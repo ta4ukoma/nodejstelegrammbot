@@ -1,0 +1,28 @@
+{
+  "name": "nodejstelegrammbot",
+  "version": "1.0.0",
+  "description": "server side for monitoring system resources on my NAS via Telegram app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ta4ukoma/nodejstelegrammbot.git"
+  },
+  "keywords": [
+    "nodejs",
+    "telegrambot",
+    "telegram"
+  ],
+  "author": "takcuct7@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ta4ukoma/nodejstelegrammbot/issues"
+  },
+  "homepage": "https://github.com/ta4ukoma/nodejstelegrammbot#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0",
+    "os-utils": "^0.0.14"
+  }
+}
