@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ta4ukoma/nodejstelegrammbot#readme",
   "dependencies": {
     "node-telegram-bot-api": "^0.66.0",
-    "os-utils": "^0.0.14"
+    "os-utils": "^0.0.14",
+    "shelljs": "^0.8.5"
   }
 }
