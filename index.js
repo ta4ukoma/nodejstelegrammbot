@@ -57,16 +57,12 @@ function getServerStatus() {
     
     // Printing os.uptime() value
     const uptime_sec = os.uptime();
-    let uptime_min = uptime_sec / 60;
-    let uptime_hour = uptime_min / 60;
-    
-    uptime_sec = Math.floor(uptime_sec);
-    uptime_min = Math.floor(uptime_min);
-    uptime_hour = Math.floor(uptime_hour);
-    
-    uptime_hour = uptime_hour % 60;
-    uptime_min = uptime_min % 60;
-    uptime_sec = uptime_sec % 60;
+
+    // Преобразование времени работы в часы, минуты и секунды
+    const uptime_hour = Math.floor(uptime_sec / 3600);
+    uptime_sec %= 3600;
+    const uptime_min = Math.floor(uptime_sec / 60);
+    uptime_sec %= 60;
 
     return {
         ipv4Addresses,
