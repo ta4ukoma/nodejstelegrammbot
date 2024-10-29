@@ -39,17 +39,9 @@ bot.onText(/\/status/, (msg) => {
 
 console.log('Бот запущен с использованием polling');
 
-
-
-// Обработчик текстовых сообщений
-// bot.on('message', (msg) => {
-//     const chatId = msg.chat.id;
-//     // Ответ на любое текстовое сообщение
-//     bot.sendMessage(chatId, 'Вы написали: ' + msg.text);
-// });
-
 // Функция для получения статуса сервера
 function getServerStatus() {
+    const networkInterfaces = os.networkInterfaces;
     const ipv4Addresses = Object.entries(networkInterfaces)
   .flatMap(([key, interfaces]) =>
     interfaces
