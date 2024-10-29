@@ -23,18 +23,18 @@ bot.onText(/\/help/, (msg) => {
 bot.onText(/\/status/, (msg) => {
     const status = getServerStatus();
     const responseMessage = `
-    Имя хоста: ${JSON.stringify(status.hostname)}
-    Платформа: ${JSON.stringify(status.platform)}
-    Версия ОС: ${JSON.stringify(status.osrelease)}
+    Имя хоста: ${JSON.stringify(status.hostname)} 
+    Платформа: ${JSON.stringify(status.platform)} 
+    Версия ОС: ${JSON.stringify(status.osrelease)} 
     Состояние сервера:
     Время работы 
-    ${status.uptime_hour} час(ы), ${status.uptime_min} минут(ы), ${status.uptime_sec} секунд(ы)
+    ${status.uptime_hour} час(ы), ${status.uptime_min} минут(ы), ${status.uptime_sec} секунд(ы) 
     Загрузка CPU (1 мин) 
-    ${status.cpuLoad}
+    ${status.cpuLoad} 
     Свободная оперативная память: 
-    ${status.freeMemory.toFixed(2)} МБ
+    ${status.freeMemory.toFixed(2)} МБ 
     Сетевые интерфейсы: 
-    ${status.ipv4Addresses}
+    ${status.ipv4Addresses} 
     `;
 
     // Отправка ответа пользователю
@@ -67,6 +67,7 @@ function getServerStatus() {
     uptime_sec %= 3600;
     const uptime_min = Math.floor(uptime_sec / 60);
     uptime_sec %= 60;
+    uptime_sec = Math.floor(uptime_sec);
 
     return {
         ipv4Addresses,
