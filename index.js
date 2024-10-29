@@ -27,7 +27,7 @@ bot.onText(/\/status/, (msg) => {
     Платформа: ${JSON.stringify(status.platform)}
     Версия ОС: ${JSON.stringify(status.osrelease)}
     Состояние сервера:
-    Время работы: ${JSON.stringify(status.uptime)}
+    Время работы: ${uptime_hour} час(ы), ${uptime_min} минут(ы), ${uptime_sec} секунд(ы)
     Загрузка CPU (1 мин): ${status.cpuLoad}
     Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
     Сетевые интерфейсы: ${status.ipv4Addresses}
@@ -41,7 +41,7 @@ console.log('Бот запущен с использованием polling');
 
 // Функция для получения статуса сервера
 function getServerStatus() {
-    const networkInterfaces = os.networkInterfaces;
+    const networkInterfaces = os.networkInterfaces();
     const ipv4Addresses = Object.entries(networkInterfaces)
   .flatMap(([key, interfaces]) =>
     interfaces
@@ -54,7 +54,19 @@ function getServerStatus() {
     const freeMemory = os.freemem() / (1024 * 1024); // Свободная память в МБ
     const platform = os.platform();
     const osrelease = os.release();
-    const uptime = os.uptime();
+    
+    // Printing os.uptime() value
+    const uptime_sec = os.uptime();
+    let uptime_min = uptime_sec / 60;
+    let uptime_hour = uptime_min / 60;
+    
+    uptime_sec = Math.floor(uptime_sec);
+    uptime_min = Math.floor(uptime_min);
+    uptime_hour = Math.floor(uptime_hour);
+    
+    uptime_hour = ut_hour % 60;
+    uptime_min = ut_min % 60;
+    uptime_sec = ut_sec % 60;
 
     return {
         ipv4Addresses,
@@ -63,6 +75,8 @@ function getServerStatus() {
         freeMemory,
         platform,
         osrelease,
-        uptime,
+        uptime_hour,
+        uptime_min,
+        uptime_sec,
     };
 }
