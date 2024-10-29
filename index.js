@@ -23,11 +23,14 @@ bot.onText(/\/help/, (msg) => {
 bot.onText(/\/status/, (msg) => {
     const status = getServerStatus();
     const responseMessage = `
-Состояние сервера:
-Сетевые интерфейсы: ${JSON.stringify(status.interfaces)}
-Модель процессора: ${JSON.stringify(status.hostname)}
-Загрузка CPU (1 мин): ${status.cpuLoad}
-Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
+        Имя хоста: ${JSON.stringify(status.hostname)}
+        Платформа: ${JSON.stringify(status.platform)}
+        Версия ОС: ${JSON.stringify(status.osrelease)}
+        Состояние сервера:
+        Время работы: ${JSON.stringify(status.uptime)}
+        Загрузка CPU (1 мин): ${status.cpuLoad}
+        Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
+        Сетевые интерфейсы: ${JSON.stringify(status.ipv4Addresses)}
     `;
 
     // Отправка ответа пользователю
@@ -47,15 +50,27 @@ console.log('Бот запущен с использованием polling');
 
 // Функция для получения статуса сервера
 function getServerStatus() {
-    const interfaces = os.networkInterfaces();
+    const ipv4Addresses = Object.entries(networkInterfaces)
+  .flatMap(([key, interfaces]) =>
+    interfaces
+      .filter(iface => iface.family === 'IPv4')
+      .map(iface => `${key} : ${iface.address}`)
+  )
+  .join('\n');
     const cpuLoad = os.loadavg()[0]; // Средняя загрузка CPU за 1 минуту
     const hostname = os.hostname();
     const freeMemory = os.freemem() / (1024 * 1024); // Свободная память в МБ
+    const platform = os.platform();
+    const osrelease = os.release();
+    const uptime = os.uptime();
 
     return {
-        interfaces,
+        ipv4Addresses,
         hostname,
         cpuLoad,
         freeMemory,
+        platform,
+        osrelease,
+        uptime,
     };
 }
