@@ -64,9 +64,9 @@ function getServerStatus() {
     uptime_min = Math.floor(uptime_min);
     uptime_hour = Math.floor(uptime_hour);
     
-    uptime_hour = ut_hour % 60;
-    uptime_min = ut_min % 60;
-    uptime_sec = ut_sec % 60;
+    uptime_hour = uptime_hour % 60;
+    uptime_min = uptime_min % 60;
+    uptime_sec = uptime_sec % 60;
 
     return {
         ipv4Addresses,
