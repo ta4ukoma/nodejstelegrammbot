@@ -25,7 +25,7 @@ bot.onText(/\/status/, (msg) => {
     const responseMessage = `
 Состояние сервера:
 Сетевые интерфейсы: ${JSON.stringify(status.interfaces)}
-Модель процессора: ${JSON.stringify(status.cpuModel)}
+Модель процессора: ${JSON.stringify(status.hostname)}
 Загрузка CPU (1 мин): ${status.cpuLoad}
 Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
     `;
@@ -49,13 +49,12 @@ console.log('Бот запущен с использованием polling');
 function getServerStatus() {
     const interfaces = os.networkInterfaces();
     const cpuLoad = os.loadavg()[0]; // Средняя загрузка CPU за 1 минуту
-    const cpus = os.cpus();
-    const cpuModel = cpus[0].model;
+    const hostname = os.hostname();
     const freeMemory = os.freemem() / (1024 * 1024); // Свободная память в МБ
 
     return {
         interfaces,
-        cpuModel,
+        hostname,
         cpuLoad,
         freeMemory,
     };
