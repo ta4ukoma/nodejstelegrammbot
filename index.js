@@ -27,7 +27,7 @@ bot.onText(/\/status/, (msg) => {
     Платформа: ${JSON.stringify(status.platform)}
     Версия ОС: ${JSON.stringify(status.osrelease)}
     Состояние сервера:
-    Время работы: ${uptime_hour} час(ы), ${uptime_min} минут(ы), ${uptime_sec} секунд(ы)
+    Время работы: ${status.uptime_hour} час(ы), ${status.uptime_min} минут(ы), ${status.uptime_sec} секунд(ы)
     Загрузка CPU (1 мин): ${status.cpuLoad}
     Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
     Сетевые интерфейсы: ${status.ipv4Addresses}
