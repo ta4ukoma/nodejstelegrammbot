@@ -27,10 +27,14 @@ bot.onText(/\/status/, (msg) => {
     Платформа: ${JSON.stringify(status.platform)}
     Версия ОС: ${JSON.stringify(status.osrelease)}
     Состояние сервера:
-    Время работы: ${status.uptime_hour} час(ы), ${status.uptime_min} минут(ы), ${status.uptime_sec} секунд(ы)
-    Загрузка CPU (1 мин): ${status.cpuLoad}
-    Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
-    Сетевые интерфейсы: ${status.ipv4Addresses}
+    Время работы 
+    ${status.uptime_hour} час(ы), ${status.uptime_min} минут(ы), ${status.uptime_sec} секунд(ы)
+    Загрузка CPU (1 мин) 
+    ${status.cpuLoad}
+    Свободная оперативная память: 
+    ${status.freeMemory.toFixed(2)} МБ
+    Сетевые интерфейсы: 
+    ${status.ipv4Addresses}
     `;
 
     // Отправка ответа пользователю
@@ -56,7 +60,7 @@ function getServerStatus() {
     const osrelease = os.release();
     
     // Printing os.uptime() value
-    const uptime_sec = os.uptime();
+    let uptime_sec = os.uptime();
 
     // Преобразование времени работы в часы, минуты и секунды
     const uptime_hour = Math.floor(uptime_sec / 3600);
