@@ -23,14 +23,14 @@ bot.onText(/\/help/, (msg) => {
 bot.onText(/\/status/, (msg) => {
     const status = getServerStatus();
     const responseMessage = `
-        Имя хоста: ${JSON.stringify(status.hostname)}
-        Платформа: ${JSON.stringify(status.platform)}
-        Версия ОС: ${JSON.stringify(status.osrelease)}
-        Состояние сервера:
-        Время работы: ${JSON.stringify(status.uptime)}
-        Загрузка CPU (1 мин): ${status.cpuLoad}
-        Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
-        Сетевые интерфейсы: ${JSON.stringify(status.ipv4Addresses)}
+    Имя хоста: ${JSON.stringify(status.hostname)}
+    Платформа: ${JSON.stringify(status.platform)}
+    Версия ОС: ${JSON.stringify(status.osrelease)}
+    Состояние сервера:
+    Время работы: ${JSON.stringify(status.uptime)}
+    Загрузка CPU (1 мин): ${status.cpuLoad}
+    Свободная оперативная память: ${status.freeMemory.toFixed(2)} МБ
+    Сетевые интерфейсы: ${status.ipv4Addresses}
     `;
 
     // Отправка ответа пользователю
